@@ -1,6 +1,6 @@
-# Free-Malyarevsky
+# FreeMalyarevsky
 
-Welcome to the **Free-Malyarevsky** project!
+Welcome to the **FreeMalyarevsky** project!
 
 This website is dedicated to supporting and helping our friend, Alexey Malyarevsky. Our mission is to provide resources, updates, and a platform for the community to come together in support of Alexey.
 
