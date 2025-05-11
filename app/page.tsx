@@ -134,20 +134,19 @@ export default function Home() {
       </section>
 
       {/* Social Media Section */}
-      {/* TODO: Replace the old icons with the new ones. */}
-      <section className="py-20 bg-muted">
+      <section className="py-20 bg-muted w-full overflow-hidden">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-12">Stay Updated</h2>
-          <div className="flex justify-center gap-8">
-            <Button variant="outline" size="lg" className="gap-2">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2">
               <Twitter className="w-5 h-5" />
               Twitter
             </Button>
-            <Button variant="outline" size="lg" className="gap-2">
-              <RiTelegramLine size={30} />
+            <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2">
+              <RiTelegramLine className="w-5 h-5" />
               Telegram
             </Button>
-            <Button variant="outline" size="lg" className="gap-2">
+            <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2">
               <Instagram className="w-5 h-5" />
               Instagram
             </Button>
