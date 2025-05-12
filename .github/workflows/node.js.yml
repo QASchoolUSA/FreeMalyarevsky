@@ -21,7 +21,7 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ftp.freemalyarevsky.com
-          username: u265986399.nikita@freemalyarevsky.com
+          username: u265986399.nikita
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: out/
           server-dir: /
