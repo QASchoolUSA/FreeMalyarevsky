@@ -19,7 +19,6 @@ export default function Home() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     console.log(formData);
   };
 
@@ -29,14 +28,14 @@ export default function Home() {
       <section className="relative h-screen flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
-            src="https://images.pexels.com/photos/2014775/pexels-photo-2014775.jpeg"
+            src="/alexey-malyarevsky-court-cell.webp"
             alt="Background"
             fill
             className="object-cover brightness-50"
             priority
           />
         </div>
-        <div className="relative z-10 text-center text-white max-w-3xl mx-auto px-4">
+        <div className="relative z-10 text-center text-white max-w-3xl mx-auto px-4 opacity-60">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">Free Alexey Malyarevsky</h1>
           <p className="text-xl md:text-2xl mb-8">Political prisoner sentenced to 7 years for standing up against corruption</p>
           <Button size="lg" asChild>
@@ -52,7 +51,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <Image
-                src="/alex-pic.webp"
+                src="/malyarevsky-picket.jpeg"
                 alt="Alexey Malyarevsky"
                 width={500}
                 height={600}
@@ -137,8 +136,8 @@ export default function Home() {
       <section className="py-20 bg-muted w-full overflow-hidden">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-12">Stay Updated</h2>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2">
+          <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8">
+            <Button variant="outline" size="lg" className="gap-2">
               <Twitter className="w-5 h-5" />
               Twitter
             </Button>
