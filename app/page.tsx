@@ -75,6 +75,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Videos Section */}
+      <section className="py-20 bg-muted">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold mb-12 text-center">Watch Videos</h2>
+          <div className="grid gap-8 md:grid-cols-2">
+            <div className="aspect-video w-full">
+              <iframe
+                className="rounded-lg w-full h-full"
+                src="https://www.youtube.com/embed/1abE-UYwAc0?si=wYqli_7odrhRqJA0"
+                title="YouTube video player 1"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <div className="aspect-video w-full">
+              <iframe
+                className="rounded-lg w-full h-full"
+                src="https://www.youtube.com/embed/PZ0z1sQ7oXM?si=h2dImHtj1mh29v7r"
+                title="YouTube video player 2"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Location Section */}
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-4">
