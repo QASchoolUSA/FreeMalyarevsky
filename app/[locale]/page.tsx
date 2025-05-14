@@ -6,11 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-import { MapPin, Mail, Twitter, Facebook, Instagram } from "lucide-react";
+import { MapPin, Twitter, Instagram } from "lucide-react";
 import { RiTelegramLine } from "react-icons/ri";
+import enTranslations from '../../public/locales/en/common.json'; // Adjusted path
+import ruTranslations from '../../public/locales/ru/common.json';
 
+export default function Home({ params }: { params: { locale: string } }) { // Correctly receive params.locale
+  const { locale } = params;
+  console.log("Locale in app/[locale]/page.tsx:", locale); // Add this log
 
-export default function Home() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,6 +26,14 @@ export default function Home() {
     console.log(formData);
   };
 
+  // Simplified translation object based on locale from params
+  const t = locale === 'ru' ? ruTranslations : enTranslations;
+
+  // Fallback if translations aren't loaded correctly (shouldn't happen with imports)
+  if (!t || !t.hero) {
+    return <div>Error: Translations not loaded for locale: {locale}</div>;
+  }
+
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -29,17 +41,18 @@ export default function Home() {
         <div className="absolute inset-0">
           <Image
             src="/alexey-malyarevsky-court-cell.webp"
-            alt="Background"
+            alt={t.hero.backgroundImageAlt}
             fill
             className="object-cover brightness-50"
+            unoptimized
             priority
           />
         </div>
         <div className="relative z-10 text-center text-white max-w-3xl mx-auto px-4 opacity-60">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">Free Alexey Malyarevsky</h1>
-          <p className="text-xl md:text-2xl mb-8">Political prisoner sentenced to 7 years for standing up against corruption</p>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">{t.hero.title}</h1>
+          <p className="text-xl md:text-2xl mb-8">{t.hero.subtitle}</p>
           <Button size="lg" asChild>
-            <a href="#take-action">Take Action Now</a>
+            <a href="#take-action">{t.hero.ctaButton}</a>
           </Button>
         </div>
       </section>
@@ -47,28 +60,26 @@ export default function Home() {
       {/* About Section */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center">About Alexey</h2>
+          <h2 className="text-4xl font-bold mb-12 text-center">{t.about.title}</h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <Image
                 src="/malyarevsky-picket.jpeg"
-                alt="Alexey Malyarevsky"
+                alt={t.about.imageAlt}
                 width={500}
                 height={600}
+                unoptimized
                 className="rounded-lg"
               />
             </div>
             <div>
               <p className="text-lg mb-6">
-                Alexey Malyarevsky, a brave advocate for democracy and transparency in Russia,
-                was sentenced to 7 years in prison on October 23, 2023. His crime? Standing up
-                against corruption and expressing his political views through peaceful protest
-                and a modest $150 donation to Navalny&apos;s anti-corruption foundation.
+                {t.about.paragraph1}
               </p>
               <p className="text-lg mb-6">
-                This harsh sentence represents a clear violation of human rights and freedom
-                of expression. Alexey&apos;s case has become a symbol of the ongoing struggle
-                for democracy in Russia.
+                {t.about.paragraph2}
+              </p>
+              <p className="text-lg mb-6">
               </p>
             </div>
           </div>
@@ -78,7 +89,7 @@ export default function Home() {
       {/* Videos Section */}
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center">Watch Videos</h2>
+          <h2 className="text-4xl font-bold mb-12 text-center">{t.videos.title}</h2>
           <div className="grid gap-8 md:grid-cols-2">
             <div className="aspect-video w-full">
               <iframe
@@ -107,19 +118,18 @@ export default function Home() {
       {/* Location Section */}
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center">Current Location</h2>
+          <h2 className="text-4xl font-bold mb-12 text-center">{t.location.title}</h2>
           <Card className="p-6 max-w-2xl mx-auto">
             <div className="flex items-start gap-4">
               <MapPin className="w-6 h-6 text-primary" />
               <div>
-                <h3 className="text-xl font-semibold mb-2">Correctional Colony</h3>
+                <h3 className="text-xl font-semibold mb-2">{t.location.cardTitle}</h3>
                 <p className="text-muted-foreground mb-4">
-                  Alexey is currently being held at Correctional Colony No. 1, located in Orenburg, Russia.
-                  This high-security facility is known for housing political prisoners.
+                  {t.location.description}
                 </p>
                 <Button variant="outline" asChild>
                   <a href="https://maps.app.goo.gl/9gG7uHHToLqDRgT48" target="_blank" rel="noopener noreferrer">
-                    View on Map
+                    {t.location.mapButton}
                   </a>
                 </Button>
               </div>
@@ -131,7 +141,7 @@ export default function Home() {
       {/* Contact Form Section */}
       <section id="take-action" className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center">Share Information</h2>
+          <h2 className="text-4xl font-bold mb-12 text-center">{t.contactForm.title}</h2>
           <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-6">
             <div>
               <Input
@@ -150,7 +160,7 @@ export default function Home() {
             </div>
             <div>
               <Textarea
-                placeholder="Share any information you have about Alexey..."
+                placeholder={t.contactForm.informationPlaceholder}
                 value={formData.information}
                 onChange={(e) => setFormData({ ...formData, information: e.target.value })}
                 rows={5}

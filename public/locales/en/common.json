@@ -1,0 +1,38 @@
+{
+    "hero": {
+      "backgroundImageAlt": "Alexey Malyarevsky in court",
+      "title": "Free Alexey Malyarevsky",
+      "subtitle": "Political prisoner sentenced to 7 years for standing up against corruption",
+      "ctaButton": "Take Action Now"
+    },
+    "about": {
+      "title": "About Alexey",
+      "imageAlt": "Alexey Malyarevsky Picket",
+      "paragraph1": "Alexey Malyarevsky, a brave advocate for democracy and transparency in Russia, was sentenced to 7 years in prison on October 23, 2023. His crime? Standing up against corruption and expressing his political views through peaceful protest and a modest $150 donation to Navalny's anti-corruption foundation.",
+      "paragraph2": "This harsh sentence represents a clear violation of human rights and freedom of expression. Alexey's case has become a symbol of the ongoing struggle for democracy in Russia."
+    },
+    "videos": {
+      "title": "Watch Videos",
+      "video1Title": "YouTube video player 1",
+      "video2Title": "YouTube video player 2"
+    },
+    "location": {
+      "title": "Current Location",
+      "cardTitle": "Correctional Colony",
+      "description": "Alexey is currently being held at Correctional Colony No. 1, located in Orenburg, Russia. This high-security facility is known for housing political prisoners.",
+      "mapButton": "View on Map"
+    },
+    "contactForm": {
+      "title": "Share Information",
+      "namePlaceholder": "Your Name",
+      "emailPlaceholder": "Your Email",
+      "informationPlaceholder": "Share any information you have about Alexey...",
+      "submitButton": "Submit Information"
+    },
+    "socialMedia": {
+      "title": "Stay Updated",
+      "twitterButton": "Twitter",
+      "telegramButton": "Telegram",
+      "instagramButton": "Instagram"
+    }
+  }

@@ -7,7 +7,11 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-export default function Navbar() {
+interface NavbarProps {
+  locale: string;
+}
+
+export default function Navbar({ locale }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -26,9 +30,9 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Take Action", path: "/#take-action" },
+    { name: "Home", path: `/${locale}` },
+    { name: "About", path: `/${locale}/about` },
+    { name: "Take Action", path: `/${locale}/#take-action` },
   ];
 
   return (

@@ -1,0 +1,60 @@
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+const locales = ['en', 'ru'];
+const defaultLocale = 'en';
+
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // Bypass logic for static assets and root-level public files
+  if (
+    pathname.startsWith('/api/') ||
+    pathname.startsWith('/_next/static/') ||
+    pathname.startsWith('/_next/image/') ||
+    pathname.startsWith('/images/') ||
+    pathname.startsWith('/locales/') ||
+    pathname.startsWith('/favicon.ico') ||
+    pathname.startsWith('/.well-known/') ||
+    // NEW: Bypass any root-level file with an extension (e.g., "/file.jpg")
+    /^\/[^/]+\.[^/]+$/.test(pathname)
+  ) {
+    console.log(`Middleware: Bypassing localization for path: ${pathname}`);
+    return NextResponse.next();
+  }
+
+  console.log(`Middleware: Processing localization for path: ${pathname}`);
+
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
+
+  if (pathnameHasLocale) {
+    console.log(`Middleware: Pathname already has locale: ${pathname}`);
+    return NextResponse.next();
+  }
+
+  const localeCookie = request.cookies.get('NEXT_LOCALE')?.value;
+  const preferredLocale = localeCookie && locales.includes(localeCookie) ? localeCookie : defaultLocale;
+  console.log(`Middleware: Preferred locale: ${preferredLocale}`);
+
+  let newPathWithLocale;
+  if (pathname === '/') {
+    newPathWithLocale = `/${preferredLocale}`;
+  } else {
+    newPathWithLocale = `/${preferredLocale}${pathname}`;
+  }
+  
+  request.nextUrl.pathname = newPathWithLocale;
+  
+  console.log(`Middleware: Redirecting to: ${request.nextUrl.toString()}`);
+  return NextResponse.redirect(request.nextUrl);
+}
+
+export const config = {
+    matcher: [
+      // Add \\.well-known to the negative lookahead
+      // The \\ is to escape the dot . so it's treated as a literal dot.
+      '/((?!api|_next/static|_next/image|favicon.ico|images|locales|\\.well-known).*)',
+    ],
+  };
