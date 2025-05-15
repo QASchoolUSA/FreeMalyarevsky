@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import LanguageSwitcher from "@/components/language-switcher";
 
 interface NavbarProps {
   locale: string;
@@ -66,11 +67,13 @@ export default function Navbar({ locale }: NavbarProps) {
           <Button variant="default" size="sm" asChild>
             <Link href="/#contact">Share Information</Link>
           </Button>
+          <LanguageSwitcher currentLocale={locale} />
           <ThemeToggle />
         </nav>
 
         {/* Mobile Navigation Toggle */}
         <div className="flex md:hidden items-center gap-4">
+          {/* Removed LanguageSwitcher from here */}
           <ThemeToggle />
           <Button
             variant="ghost"
@@ -131,6 +134,10 @@ export default function Navbar({ locale }: NavbarProps) {
             >
               <Link href="/#contact">Share Information</Link>
             </Button>
+            {/* Centered Language Switcher at the bottom */}
+            <div className="flex justify-center mt-6">
+              <LanguageSwitcher currentLocale={locale} />
+            </div>
           </div>
         </div>
       )}
