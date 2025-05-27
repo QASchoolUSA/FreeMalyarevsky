@@ -35,7 +35,19 @@ export async function generateMetadata({
         'en': `${baseUrl}/en`,
         'ru': `${baseUrl}/ru`,
       },
-    }
+    },
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: '16x16' },
+        { url: '/icon.png', sizes: '512x512' },
+      ],
+      apple: [
+        { url: '/apple-touch-icon.png', sizes: '180x180' },
+      ],
+      other: [
+        { url: '/icon-192.png', sizes: '192x192' },
+      ],
+    },
   };
 }
 
