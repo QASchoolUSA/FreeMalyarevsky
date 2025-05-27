@@ -1,4 +1,11 @@
 {
+    "metadata": {
+      "title": "Alexey Malyarevsky - Free Political Prisoner",
+      "description": "Alexey Malyarevsky, a political prisoner sentenced to 7 years in prison, is a symbol of the ongoing struggle for democracy in Russia.",
+      "ogTitle": "Alexey Malyarevsky - Free Political Prisoner",
+      "ogDescription": "Alexey Malyarevsky, a political prisoner sentenced to 7 years in prison, is a symbol of the ongoing struggle for democracy in Russia.",
+      "keywords": "Alexey Malyarevsky, Russian political prisoner, Free Alexey Malyarevsky, Russia, democracy, corruption, protest, donation"
+    },
     "hero": {
       "backgroundImageAlt": "Alexey Malyarevsky in court",
       "title": "Free Alexey Malyarevsky",
@@ -12,9 +19,7 @@
       "paragraph2": "This harsh sentence represents a clear violation of human rights and freedom of expression. Alexey's case has become a symbol of the ongoing struggle for democracy in Russia."
     },
     "videos": {
-      "title": "Watch Videos",
-      "video1Title": "YouTube video player 1",
-      "video2Title": "YouTube video player 2"
+      "title": "Watch Videos with Alexey Malyarevsky"
     },
     "location": {
       "title": "Current Location",
