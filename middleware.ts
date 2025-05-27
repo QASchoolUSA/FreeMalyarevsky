@@ -15,8 +15,11 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/images/') ||
     pathname.startsWith('/locales/') ||
     pathname.startsWith('/favicon.ico') ||
+    pathname.startsWith('/apple-touch-icon.png') ||
+    pathname.startsWith('/icon.png') ||
+    pathname.startsWith('/icon-192.png') ||
+    pathname.startsWith('/icon-512.png') ||
     pathname.startsWith('/.well-known/') ||
-    // NEW: Bypass any root-level file with an extension (e.g., "/file.jpg")
     /^\/[^/]+\.[^/]+$/.test(pathname)
   ) {
     console.log(`Middleware: Bypassing localization for path: ${pathname}`);
