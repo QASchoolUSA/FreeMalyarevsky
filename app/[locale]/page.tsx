@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { MapPin, Twitter, Instagram } from "lucide-react";
 import { RiTelegramLine } from "react-icons/ri";
-import enTranslations from '../../public/locales/en/common.json'; // Adjusted path
+import enTranslations from '../../public/locales/en/common.json';
 import ruTranslations from '../../public/locales/ru/common.json';
 
 export default function Home({ params }: { params: { locale: string } }) { // Correctly receive params.locale
