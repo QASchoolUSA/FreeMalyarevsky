@@ -9,8 +9,8 @@
     "hero": {
       "backgroundImageAlt": "Фон",
       "title": "Свободу Алексею Маляревскому",
-      "subtitle": "Политзаключенный, приговоренный к 7 годам за борьбу с коррупцией",
-      "ctaButton": "Действуйте сейчас"
+      "subtitle": "Программиста приговорили к 7 годам за одиночный пикет и пожертвование $150 против коррупции.",
+      "ctaButton": "Подпишите петицию сейчас"
     },
     "about": {
       "title": "Об Алексее",
@@ -37,9 +37,7 @@
       "submitButton": "Отправить информацию"
     },
     "socialMedia": {
-      "title": "Будьте в курсе",
-      "twitterButton": "Twitter",
-      "telegramButton": "Telegram",
-      "instagramButton": "Instagram"
+      "title": "Следите за обновлениями",
+      "telegramButton": "Telegram"
     }
   }

@@ -9,8 +9,8 @@
     "hero": {
       "backgroundImageAlt": "Alexey Malyarevsky in court",
       "title": "Free Alexey Malyarevsky",
-      "subtitle": "Political prisoner sentenced to 7 years for standing up against corruption",
-      "ctaButton": "Take Action Now"
+      "subtitle": "A programmer was sentenced to 7 years for a solo protest and a $150 donation against corruption.",
+      "ctaButton": "Sign Petition Now"
     },
     "about": {
       "title": "About Alexey",
@@ -36,8 +36,6 @@
     },
     "socialMedia": {
       "title": "Stay Updated",
-      "twitterButton": "Twitter",
-      "telegramButton": "Telegram",
-      "instagramButton": "Instagram"
+      "telegramButton": "Telegram"
     }
   }

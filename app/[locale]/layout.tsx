@@ -9,7 +9,7 @@ import ruTranslations from '../../public/locales/ru/common.json';
 
 const inter = Inter({ subsets: ["latin"] });
 
-const baseUrl = 'https://freemalyarevsky.com';
+const baseUrl = 'https://freemalyarevsky.com'
 
 export async function generateMetadata({ 
   params 

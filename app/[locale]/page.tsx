@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -48,11 +49,11 @@ export default function Home({ params }: { params: { locale: string } }) { // Co
             priority
           />
         </div>
-        <div className="relative z-10 text-center text-white max-w-3xl mx-auto px-4 opacity-60">
+        <div className="relative z-10 text-center text-white max-w-3xl mx-auto px-4">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">{t.hero.title}</h1>
           <p className="text-xl md:text-2xl mb-8">{t.hero.subtitle}</p>
           <Button size="lg" asChild>
-            <a href="#take-action">{t.hero.ctaButton}</a>
+            <a href="https://chng.it/6v2QNt6ctg">{t.hero.ctaButton}</a>
           </Button>
         </div>
       </section>
@@ -145,7 +146,7 @@ export default function Home({ params }: { params: { locale: string } }) { // Co
           <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-6">
             <div>
               <Input
-                placeholder="Your Name"
+                placeholder={t.contactForm.namePlaceholder}
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               />
@@ -153,7 +154,7 @@ export default function Home({ params }: { params: { locale: string } }) { // Co
             <div>
               <Input
                 type="email"
-                placeholder="Your Email"
+                placeholder={t.contactForm.emailPlaceholder}
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
@@ -166,7 +167,7 @@ export default function Home({ params }: { params: { locale: string } }) { // Co
                 rows={5}
               />
             </div>
-            <Button type="submit" className="w-full">Submit Information</Button>
+            <Button type="submit" className="w-full">{t.contactForm.submitButton}</Button>
           </form>
         </div>
       </section>
@@ -174,20 +175,14 @@ export default function Home({ params }: { params: { locale: string } }) { // Co
       {/* Social Media Section */}
       <section className="py-20 bg-muted w-full overflow-hidden">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-12">Stay Updated</h2>
+          <h2 className="text-4xl font-bold mb-12">{t.socialMedia.title}</h2>
           <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8">
-            <Button variant="outline" size="lg" className="gap-2">
-              <Twitter className="w-5 h-5" />
-              Twitter
-            </Button>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2">
-              <RiTelegramLine className="w-5 h-5" />
-              Telegram
-            </Button>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2">
-              <Instagram className="w-5 h-5" />
-              Instagram
-            </Button>
+            <Link href="https://t.me/freemalyarevskiy" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2">
+                <RiTelegramLine className="w-5 h-5" />
+                Telegram
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
