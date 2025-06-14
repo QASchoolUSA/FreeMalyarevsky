@@ -33,7 +33,7 @@ export default function Navbar({ locale }: NavbarProps) {
   const navLinks = [
     { name: "Home", path: `/${locale}` },
     { name: "About", path: `/${locale}/about` },
-    { name: "Take Action", path: `/${locale}/#take-action` },
+    { name: "Blog", path: `/${locale}/blog` },
   ];
 
   return (
