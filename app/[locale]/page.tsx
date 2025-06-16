@@ -7,24 +7,63 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-import { MapPin, Twitter, Instagram } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { RiTelegramLine } from "react-icons/ri";
+import emailjs from '@emailjs/browser';
 import enTranslations from '../../public/locales/en/common.json';
 import ruTranslations from '../../public/locales/ru/common.json';
 
-export default function Home({ params }: { params: { locale: string } }) { // Correctly receive params.locale
+export default function Home({ params }: { params: { locale: string } }) {
   const { locale } = params;
-  console.log("Locale in app/[locale]/page.tsx:", locale); // Add this log
+  console.log("Locale in app/[locale]/page.tsx:", locale);
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     information: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    setIsLoading(true);
+    setMessage('');
+
+    try {
+      // Check if environment variables are defined
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !publicKey) {
+        throw new Error('EmailJS configuration is missing. Please check your environment variables.');
+      }
+
+      // Prepare template parameters for EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.information,
+        to_email: 'nikita@kedrov.com',
+        reply_to: formData.email
+      };
+
+      const result = await emailjs.send(
+        serviceId,
+        'template_ceohfpc',
+        templateParams,
+        publicKey
+      );
+
+      console.log('Email sent successfully:', result.text);
+      setMessage('Message sent successfully!');
+      setFormData({ name: '', email: '', information: '' });
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      setMessage('Failed to send message. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Simplified translation object based on locale from params
@@ -65,7 +104,7 @@ export default function Home({ params }: { params: { locale: string } }) { // Co
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <Image
-                src="/malyarevsky-picket.jpeg"
+                src="/malyarevsky-picket.webp"
                 alt={t.about.imageAlt}
                 width={500}
                 height={600}
@@ -144,30 +183,44 @@ export default function Home({ params }: { params: { locale: string } }) { // Co
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12 text-center">{t.contactForm.title}</h2>
           <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-6">
+            <input type="hidden" name="to_email" value="nikita@kedrov.com" />
             <div>
               <Input
+                name="from_name"
                 placeholder={t.contactForm.namePlaceholder}
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                required
               />
             </div>
             <div>
               <Input
+                name="from_email"
                 type="email"
                 placeholder={t.contactForm.emailPlaceholder}
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                required
               />
             </div>
             <div>
               <Textarea
+                name="message"
                 placeholder={t.contactForm.informationPlaceholder}
                 value={formData.information}
                 onChange={(e) => setFormData({ ...formData, information: e.target.value })}
                 rows={5}
+                required
               />
             </div>
-            <Button type="submit" className="w-full">{t.contactForm.submitButton}</Button>
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? (locale === 'ru' ? 'Отправка...' : 'Sending...') : t.contactForm.submitButton}
+            </Button>
+            {message && (
+              <div className={`text-center p-3 rounded ${message.includes('успешно') || message.includes('successfully') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                {message}
+              </div>
+            )}
           </form>
         </div>
       </section>
