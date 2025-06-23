@@ -1,11 +1,11 @@
 import Link from "next/link";
+import React from "react";
 import { BlogService } from "../../lib/blog-service";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import { Separator } from "../../components/ui/separator";
 import { ExternalLink, Clock, User, ArrowRight, BookOpen } from "lucide-react";
-import Link from "next/link";
 
 // Force dynamic rendering and revalidate every 60 seconds
 export const dynamic = 'force-dynamic';
