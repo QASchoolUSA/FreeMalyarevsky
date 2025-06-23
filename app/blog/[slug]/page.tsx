@@ -7,6 +7,10 @@ import { CalendarDays, ExternalLink, ArrowLeft, Clock, User, BookOpen } from "lu
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+// Force dynamic rendering and revalidate every 60 seconds
+export const dynamic = 'force-dynamic';
+export const revalidate = 60;
+
 interface BlogSlugPageProps {
   params: {
     slug: string;

@@ -5,6 +5,11 @@ import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import { Separator } from "../../components/ui/separator";
 import { ExternalLink, Clock, User, ArrowRight, BookOpen } from "lucide-react";
+import Link from "next/link";
+
+// Force dynamic rendering and revalidate every 60 seconds
+export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export default async function BlogPage() {
   const articles = await BlogService.getAllPosts({ 
