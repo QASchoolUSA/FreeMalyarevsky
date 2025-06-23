@@ -1,5 +1,4 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const locales = ['en', 'ru'];
 const defaultLocale = 'en';
@@ -7,13 +6,14 @@ const defaultLocale = 'en';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Bypass logic for static assets and root-level public files
+  // Bypass logic for static assets, root-level public files, and blog
   if (
     pathname.startsWith('/api/') ||
     pathname.startsWith('/_next/static/') ||
     pathname.startsWith('/_next/image/') ||
     pathname.startsWith('/images/') ||
     pathname.startsWith('/locales/') ||
+    pathname.startsWith('/blog') ||
     pathname.startsWith('/favicon.ico') ||
     pathname.startsWith('/apple-touch-icon.png') ||
     pathname.startsWith('/icon.png') ||

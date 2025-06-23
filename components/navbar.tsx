@@ -33,7 +33,7 @@ export default function Navbar({ locale }: NavbarProps) {
   const navLinks = [
     { name: "Home", path: `/${locale}` },
     { name: "About", path: `/${locale}/about` },
-    { name: "Blog", path: `/${locale}/blog` },
+    { name: "Blog", path: "/blog" },
   ];
 
   return (
@@ -47,7 +47,7 @@ export default function Navbar({ locale }: NavbarProps) {
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
-          <span className="font-playfair text-xl font-bold">Free Alexey</span>
+          <span className="font-playfair text-xl font-bold">Free Malyarevsky</span>
         </Link>
 
         {/* Desktop Navigation */}
