@@ -10,6 +10,7 @@
       "backgroundImageAlt": "Alexey Malyarevsky in court",
       "title": "Free Alexey Malyarevsky",
       "subtitle": "A programmer was sentenced to 7 years for a solo protest and a $150 donation against corruption.",
+      "petitionDescription": "Join thousands in demanding justice for Alexey Malyarevsky. Your signature can help bring attention to his case and support the fight for human rights in Russia. Please sign and share with others.",
       "ctaButton": "Sign Petition Now"
     },
     "about": {
@@ -35,7 +36,7 @@
       "submitButton": "Submit Information"
     },
     "socialMedia": {
-      "title": "Stay Updated",
+      "title": "Information Sources",
       "telegramButton": "Telegram"
     }
   }
