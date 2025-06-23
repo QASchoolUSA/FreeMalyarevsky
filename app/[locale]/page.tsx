@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-import { MapPin } from "lucide-react";
+import { MapPin, Info, Globe } from "lucide-react";
 import { RiTelegramLine } from "react-icons/ri";
 import emailjs from '@emailjs/browser';
 import enTranslations from '../../public/locales/en/common.json';
@@ -91,6 +91,7 @@ export default function Home({ params }: { params: { locale: string } }) {
         <div className="relative z-10 text-center text-white max-w-3xl mx-auto px-4">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">{t.hero.title}</h1>
           <p className="text-xl md:text-2xl mb-8">{t.hero.subtitle}</p>
+          <p className="text-lg mb-8 opacity-90">{t.hero.petitionDescription}</p>
           <Button size="lg" asChild>
             <a href="https://chng.it/6v2QNt6ctg">{t.hero.ctaButton}</a>
           </Button>
@@ -234,6 +235,18 @@ export default function Home({ params }: { params: { locale: string } }) {
               <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2">
                 <RiTelegramLine className="w-5 h-5" />
                 Telegram
+              </Button>
+            </Link>
+            <Link href="https://ovd.info/" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2">
+                <Info className="w-5 h-5" />
+                OVD Info
+              </Button>
+            </Link>
+            <Link href="https://sotaproject.com/" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto gap-2">
+                <Globe className="w-5 h-5" />
+                SOTA
               </Button>
             </Link>
           </div>
