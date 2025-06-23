@@ -1,3 +1,4 @@
+import React from "react";
 import { BlogService } from "../../../lib/blog-service";
 import { Card, CardContent, CardHeader, CardTitle } from "../../../components/ui/card";
 import { Badge } from "../../../components/ui/badge";
@@ -6,6 +7,10 @@ import { Separator } from "../../../components/ui/separator";
 import { CalendarDays, ExternalLink, ArrowLeft, Clock, User, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+// Force dynamic rendering and revalidate every 60 seconds
+export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 interface BlogSlugPageProps {
   params: {
