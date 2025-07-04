@@ -1,16 +1,48 @@
 import React from "react";
 import { BlogService } from "../../../lib/blog-service";
-import { Card, CardContent, CardHeader, CardTitle } from "../../../components/ui/card";
+import { Card, CardContent } from "../../../components/ui/card";
 import { Badge } from "../../../components/ui/badge";
 import { Button } from "../../../components/ui/button";
-import { Separator } from "../../../components/ui/separator";
-import { CalendarDays, ExternalLink, ArrowLeft, Clock, User, BookOpen } from "lucide-react";
+import { ExternalLink, ArrowLeft, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { marked } from "marked";
 
 // Force dynamic rendering and revalidate every 60 seconds
 export const dynamic = 'force-dynamic';
 export const revalidate = 60;
+
+// Helper function to convert [URL] text format to standard Markdown links
+function convertCustomLinksToMarkdown(content: string): string {
+  // Handle the format: [URL] text - convert to [text](URL)
+  let result = content.replace(/\[([^\]]+)\]\s+([^\[\n]+?)(?=\s*\[|\n|$)/g, (match, url, text) => {
+    // Check if URL is relative (starts with /) and prepend https://ovd.info
+    const fullUrl = url.startsWith('/') ? `https://ovd.info${url}` : url;
+    return `[${text.trim()}](${fullUrl})`;
+  });
+  
+  // Handle standalone URLs in brackets [URL] without following text
+  result = result.replace(/\[([^\]]+)\](?!\()/g, (match, url) => {
+    // Check if URL is relative (starts with /) and prepend https://ovd.info
+    const fullUrl = url.startsWith('/') ? `https://ovd.info${url}` : url;
+    // Create user-friendly link text based on URL structure
+    let linkText = 'Читать далее'; // Default "Read more" in Russian
+    
+    if (url.includes('/express-news/')) {
+      linkText = 'ОВД Инфо';
+    } else if (url.includes('/news/')) {
+      linkText = 'Новость';
+    } else if (url.includes('/article/')) {
+      linkText = 'Статья';
+    } else if (url.includes('/blog/')) {
+      linkText = 'Блог';
+    }
+    
+    return `[${linkText}](${fullUrl})`;
+  });
+  
+  return result;
+}
 
 interface BlogSlugPageProps {
   params: {
@@ -76,8 +108,8 @@ export default async function BlogSlugPage({ params }: BlogSlugPageProps) {
             <Card className="border border-border shadow-lg bg-card overflow-hidden">
               <CardContent className="p-6 sm:p-8 lg:p-12">
                 <div 
-                   className="prose prose-lg sm:prose-xl lg:prose-2xl max-w-none text-foreground leading-relaxed font-serif prose-headings:text-foreground prose-headings:font-sans prose-p:text-foreground prose-p:mb-6 prose-p:leading-8 prose-strong:text-foreground prose-em:text-foreground prose-code:text-foreground prose-code:font-mono prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-blockquote:text-muted-foreground prose-blockquote:border-l-foreground prose-a:text-foreground prose-a:underline hover:prose-a:text-muted-foreground [&>p]:mb-6 [&>p:last-child]:mb-0 [&>p]:text-lg [&>p]:leading-8"
-                   dangerouslySetInnerHTML={{ __html: article.content }}
+                   className="prose prose-lg sm:prose-xl lg:prose-2xl max-w-none text-foreground leading-relaxed font-serif prose-headings:text-foreground prose-headings:font-sans prose-p:text-foreground prose-p:mb-6 prose-p:leading-8 prose-strong:text-foreground prose-em:text-foreground prose-code:text-foreground prose-code:font-mono prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-blockquote:text-muted-foreground prose-blockquote:border-l-foreground [&>p]:mb-6 [&>p:last-child]:mb-0 [&>p]:text-lg [&>p]:leading-8 [&_a]:bg-blue-100 [&_a]:border [&_a]:border-blue-300 [&_a]:px-2 [&_a]:py-1 [&_a]:rounded [&_a]:no-underline [&_a]:font-medium [&_a]:text-blue-700 [&_a]:transition-all [&_a]:duration-200 [&_a]:cursor-pointer [&_a]:inline-block hover:[&_a]:bg-blue-600 hover:[&_a]:text-white hover:[&_a]:border-blue-600 hover:[&_a]:shadow-md dark:[&_a]:bg-blue-900/40 dark:[&_a]:border-blue-600 dark:[&_a]:text-blue-200 dark:hover:[&_a]:bg-blue-500 dark:hover:[&_a]:text-white dark:hover:[&_a]:border-blue-500"
+                   dangerouslySetInnerHTML={{ __html: marked(convertCustomLinksToMarkdown(article.content)) }}
                  />
               </CardContent>
             </Card>
