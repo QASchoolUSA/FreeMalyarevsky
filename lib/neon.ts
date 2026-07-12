@@ -1,7 +1,7 @@
 import { neon } from '@neondatabase/serverless'
 
 // Neon PostgreSQL configuration
-const sql = neon(process.env.DATABASE_URL!)
+const sql = process.env.DATABASE_URL ? neon(process.env.DATABASE_URL) : (async () => []) as any
 
 // Database types
 export interface BlogPost {
