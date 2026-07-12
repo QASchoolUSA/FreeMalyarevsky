@@ -23,6 +23,8 @@ const nextConfig = {
     // This can help with cache consistency
     optimizePackageImports: ['@radix-ui/react-icons'],
   },
+  // Fix to make Next 15+ turbopack happy since it is enabled by default
+  turbopack: {},
 };
 
 module.exports = nextConfig;
